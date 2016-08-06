@@ -1,0 +1,60 @@
+
+<?php
+
+	if($_POST['url']){
+	echo 	$url = $_POST['url'];
+		
+	}
+
+
+	$curlobj = curl_init($url);
+	curl_setopt($curlobj,CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($curlobj,CURLOPT_SSL_VERIFYPEER, 0);
+	$output=curl_exec($curlobj);
+//	$output='ababab';
+	$output ='http://v.qq.com/iframe/preview.html?vid=n03197fadcb&amp;width=5https://v.qq.com/iframe/preview.html?vid=n03197fadcb&amp;width=5';	
+	$output ='http://v.qq.com/iframe/preview.html?vid=n03197fadcb&amp;width=5';
+	$p = '/(http\:\/\/v|https\:\/\/v).*&/U';
+
+//	echo htmlentities($output);
+	preg_match_all($p,$output,$res);
+
+echo '<pre>';
+	var_dump($res);
+
+
+	$arr = $res[0];
+
+	if(count($arr)>1){
+		echo 2;
+	}else{
+		echo 1;
+	}
+echo '</pre>';
+?>
+
+
+<body bgcolor='#fcc'>
+<center>
+<h1>获取腾讯视频地址</h1>
+<form method = 'post'>
+<p>源地址：<input name='url' size=90/></p>		
+<p>
+	<input type='submit' value='获取视频地址' />
+	<input type='reset' value='重置' />
+</p>
+</form>
+</center>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+	
